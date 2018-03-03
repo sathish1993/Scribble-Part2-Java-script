@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Scribble</title>
+	<link rel="shortcut icon" href="#" />
+	<link rel="stylesheet" href="styles2.css">
+	<script type="text/javascript" src="out.js"></script>
+	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+	<div id = "textpad" contenteditable="true"></div>
+	<div id = "saveContent">
+		<div id = "savetofile">
+			<a href="" id="a"><img src="save.png" class="downloadable" title="Save to Local" onclick="saveToFile()"></a> 
+		</div>		
+		<div id = "copytoclipboard">
+			<img src="copy.png" title="Copy to Clipboard" onclick="copyToClipboard()">
+		</div>
+		<div id = "savetodrive">
+			<img src="drive.png" title="Upload to drive" onclick="loadPicker()">
+		</div>
+		<div id = "feedback">
+			<a href= "https://docs.google.com/forms/d/e/1FAIpQLSe2NMGTTupxCeDxykdhL9yPWJMCpXYwK7xr7imt5JBWxHhNDw/viewform?usp=sf_link" id="b" target="_blank"> <img src="feedback.png" title="Feedback"></a>
+		</div>
+		<div id = "toggleswitch">
+			<label class="switch">
+	  			<input type="checkbox" onchange="toggleSwitch(this)">
+  				<span class="slider round"></span>
+			</label>
+		</div>
+		
+	</div>
+</body>
+</html>
