@@ -1,8 +1,6 @@
 body {
   font-family: "Open Sans";
   font-size: 20px;
-  color: white;
-  background-color: dimgrey;
 }
 
 #textpad {
@@ -28,6 +26,11 @@ body {
 #savetodrive > img {
     cursor: pointer;
     margin-left: 1px;
+}
+
+/*Placeholder for div*/
+[contenteditable=true]:empty::before {
+  content: attr(placeholder);
 }
 
 /*Remove border around div*/
