@@ -4,11 +4,11 @@
 	<title>Scribble</title>
 	<link rel="shortcut icon" href="#" />
 	<link rel="stylesheet" href="styles2.css">
-	<script type="text/javascript" src="out.js"></script>
+	<script type="text/javascript" src="script.js"></script>
 	<script type="text/javascript" src="https://apis.google.com/js/api.js"></script>
 </head>
 <body>
-	<div id = "textpad" contenteditable="true"></div>
+	<div id = "textpad" placeholder = "Start Scribbling here.." contenteditable="true"></div>
 	<div id = "saveContent">
 		<div id = "savetofile">
 			<a href="" id="a"><img src="save.png" class="downloadable" title="Save to Local" onclick="saveToFile()"></a> 
@@ -24,7 +24,7 @@
 		</div>
 		<div id = "toggleswitch">
 			<label class="switch">
-	  			<input type="checkbox" onchange="toggleSwitch(this)">
+	  			<input id="toggle" type="checkbox" onclick="toggleSwitch(this)">
   				<span class="slider round"></span>
 			</label>
 		</div>
