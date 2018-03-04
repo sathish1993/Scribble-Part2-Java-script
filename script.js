@@ -1,7 +1,9 @@
+var toggle = false;
+
 window.onbeforeunload = function(e) {
 	var content = document.getElementById('textpad').innerText;
-	localStorage.setItem("body", content);	
-    return null;
+	localStorage.setItem("body", content);
+	return null;
 };
 
 window.onload = function(e) {
@@ -9,6 +11,32 @@ window.onload = function(e) {
 		document.getElementById('textpad').innerHTML = '';
 	else		
 		document.getElementById('textpad').innerHTML = localStorage.body;
+
+	if(!localStorage.getItem("toggle")) {
+		toggle = document.getElementById("toggle").checked;
+		localStorage.setItem("toggle", toggle);
+		setColors(toggle);
+		return;
+	}
+	toggle = eval(localStorage.getItem("toggle"));
+	setColors(toggle);
+	document.getElementById("toggle").checked = toggle;
+}
+
+
+function setColors(toggle) {
+	if(toggle == false) {
+		document.body.style.backgroundColor = "dimgrey";
+   		document.body.style.color = "white";
+   	} else {
+		document.body.style.backgroundColor = "white";
+   		document.body.style.color = "black";
+   	}
+}
+
+function toggleSwitch(element) {
+    localStorage.setItem("toggle", element.checked);
+    setColors(element.checked);
 }
 
 function saveToFile() {
@@ -20,16 +48,6 @@ function saveToFile() {
   	var file = new Blob([content], {type: type});
   	a.href = URL.createObjectURL(file);
   	a.download = name;
-}
-
-function toggleSwitch(element) {
-   if(!element.checked) {
-   		document.body.style.backgroundColor = "dimgrey";
-   		document.body.style.color = "white";
-   } else {
-   		document.body.style.backgroundColor = "white";
-   		document.body.style.color = "black";
-   }
 }
 
 //Google drive API
