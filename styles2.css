@@ -17,6 +17,7 @@ body {
   right: 10px;
   top: 25%;
   width: 54px;
+  cursor: pointer;
 }
 
 #saveContent img {
@@ -24,8 +25,17 @@ body {
 }
 
 #savetodrive > img {
-    cursor: pointer;
     margin-left: 1px;
+}
+
+label {
+  cursor: pointer;
+}
+
+#dropboxfile  {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 /*Placeholder for div*/
