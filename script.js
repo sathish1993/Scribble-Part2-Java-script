@@ -7,6 +7,14 @@ window.onbeforeunload = function(e) {
 };
 
 window.onload = function(e) {
+	//One time alert
+	var alerted = localStorage.getItem('alerted') || '';
+    if (alerted != 'yes') {
+    	alert("Hiya! New Feature added. Now you can upload your file to dropbox. Kindly provide your valuable feedback by clicking google form image");
+    	localStorage.setItem('alerted','yes');
+    }
+
+
 	if(!localStorage.getItem("body"))
 		document.getElementById('textpad').innerHTML = '';
 	else		
@@ -121,41 +129,39 @@ function copyToClipboard() {
 }
 
 //Dropbox API
-function uploadFile(event) {
-	var input = event.target;
-	var reader = new FileReader();
-
-	reader.onload = function(){
-    
-	    var arrayBuffer = reader.result;
-	    var arrayBufferView = new Uint8Array( arrayBuffer );
-	    var blob = new Blob( [ arrayBufferView ], { type: input.files[0].type } );
-	    var urlCreator = window.URL || window.webkitURL;
-	    var textUrl = urlCreator.createObjectURL( blob ); 
-
-		var xhr = new window.XMLHttpRequest();
-	 
-		xhr.onload = function() {
-		  if (xhr.status === 200) {
-		    var fileInfo = JSON.parse(xhr.response);
-		    // Upload succeeded. Do something here with the file info.
-		  }
-		  else {
-		    var errorMessage = xhr.response || 'Unable to upload file';
-		    // Upload failed. Do something here with the error.
-		  }
-		};
-		 
-		xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
-		xhr.setRequestHeader('Authorization', 'Bearer ' + 'rTSZkDz4dVAAAAAAAAAADBjK_Yde2lhQ3wR_W8-gARa3VFxGxXlnKK7i3Sgsa2bV');
-		xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-		xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
-		  path: '/' +  file.name,
-		  mode: 'add',
-		  autorename: true,
-		  mute: false
-		}));
-		 
-		xhr.send(file);	
-	}
+function getAccessTokenFromUrl() {
+	return utils.parseQueryString(window.location.hash).access_token;
 }
+
+function isAuthenticated() {
+	console.log("getting auth token " + !!getAccessTokenFromUrl());
+	return !!getAccessTokenFromUrl();
+}
+
+function uploadFile() {
+	var dbx = new Dropbox.Dropbox({ accessToken: getAccessTokenFromUrl() });
+	var file = document.getElementById("dropboxfile").files[0];
+	dbx.filesUpload({path: '/' + file.name, contents: file})
+	.then(function(response) {
+		console.log("File upload" + response);
+		alert("File uploaded");
+		window.location.href = "https://dv7nmihel4uc9.cloudfront.net/";
+	})
+	.catch(function(error) {
+		console.error(error);
+	});
+}
+
+function saveToDropbox() {
+	var CLIENT_ID = "tx07oo9ooky99b5";
+
+	if (isAuthenticated()) {
+		uploadFile();
+	} else {
+		var dbx = new Dropbox.Dropbox({ clientId: CLIENT_ID });
+		var authUrl = dbx.getAuthenticationUrl('https://dv7nmihel4uc9.cloudfront.net/');
+		window.location.href = authUrl;
+		alert("Authenticate and Upload file again");
+	}	    
+}
+
