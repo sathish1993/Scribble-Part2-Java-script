@@ -2,15 +2,15 @@
 
 Scribble is a light weight chrome extension, which helps to turn our chrome tab into a tradional Notepad along with few cool features. This repository helps us to understand how scribble is built.
 
-You can find this extenion in chrome web store at https://chrome.google.com/webstore/detail/scribble/llcbbdoefldacbpgikiibjidbfhampee
+You can find this extenion in chrome web store at https://chrome.google.com/webstore/detail/scribble/llcbbdoefldacbpgikiibjidbfhampee.
 
 Feel free to use and provide feedback.
------------------------------------------------------------------------
+
 
 ## Prerequisites:
 
 Google Chrome browser to install this extension.
------------------------------------------------------------------------
+
 
 ## Quickstart:
 
@@ -20,12 +20,12 @@ Google Chrome browser to install this extension.
 - You can upload this 'Scribble.txt' to your Google drive by clicking 'Drive' icon.
 - You can upload this 'Scribble.txt' to your Dropbox by clicking 'Dropbox' icon
 - Feel free to provide feedback with 'Google Form' icon.
------------------------------------------------------------------------
+
 
 ## Language
 
 Scribble is mainly built in vanilla Javascript.
------------------------------------------------------------------------
+
 
 ## API usage:
 
