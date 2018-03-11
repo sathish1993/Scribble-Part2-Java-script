@@ -31,3 +31,7 @@ Scribble is mainly built in vanilla Javascript.
 
 - Uploading 'Scribble.txt' to Drive is done by integrating 'Google Picker API' https://developers.google.com/picker/docs/
 - Uploading 'Scribble.txt' to Dropbox is done by integrating 'Dropbox-Javascript-SDK' https://github.com/dropbox/dropbox-sdk-js
+
+## Other Information:
+
+Scribble is hosted in AWS S3 CloudStorage.
